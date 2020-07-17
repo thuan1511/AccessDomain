@@ -10,10 +10,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.telegram.telegrambots.ApiContextInitializer;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -35,16 +31,7 @@ public class GetRequestAutomation {
 	public ExtentTest test;
 
 	notifyBot bot = new notifyBot();
-	public void teleBot() {
-		ApiContextInitializer.init();
-		TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
-		try {
-			telegramBotsApi.registerBot(new notifyBot());
 
-		} catch (TelegramApiException e) {
-			e.printStackTrace();
-		}
-	}
 
 	@BeforeTest
 	public void setExtent() {
@@ -106,4 +93,3 @@ public class GetRequestAutomation {
 
 }
 
-//}

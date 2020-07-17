@@ -12,7 +12,6 @@ public class notifyBot extends TelegramLongPollingBot {
 
 	WebDriver driver;
 	private static final String CHAT_ID = "-416624316";
-//    private static final String TOKEN = "898848790:AAEJNDrQwI4tot6Y5v3Gg0VKXBytDN2pDrY";
 	
 	
 	@Override
@@ -46,7 +45,6 @@ public class notifyBot extends TelegramLongPollingBot {
 	@Override
      public String getBotToken() {
          return "898848790:AAEJNDrQwI4tot6Y5v3Gg0VKXBytDN2pDrY";
-         // id:-332233201
      }
 
 
