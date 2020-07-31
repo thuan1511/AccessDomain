@@ -6,7 +6,6 @@
       <class name="testing.API.GetRequestAutomation">
         <methods>
           <include name="ApiTesting"/>
-          <include name="setup"/>
           <include name="setExtent"/>
           <include name="endReport"/>
         </methods>

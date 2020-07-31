@@ -2,16 +2,15 @@ package testing.API;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Properties;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
+import org.joda.time.DateTime;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.seleniumhq.jetty9.util.log.Log;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -30,14 +29,19 @@ public class GetRequestAutomation {
 	public ExtentReports extent;
 	public static ExtentHtmlReporter htmlReporter;
 	public ExtentTest test;
+	Log log;
 
 	notifyBot bot = new notifyBot();
 	switchnetwork wifi = new switchnetwork();
+	
+	public String IDElement = "//*[@id='footer' or @id='header']";
+	public String ClassElement = "//*[@class='header' or @class='header-custom' or @class='footer footer-custom']";
 
 	@BeforeTest
 	public void setExtent() {
 		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/ExtentReport.html");
 		htmlReporter.config().setTimeStampFormat("MMM dd, yyyy HH:mm:ss");
+//		htmlReporter.onLogAdded(ISP, log.);
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
 
@@ -45,6 +49,7 @@ public class GetRequestAutomation {
 		extent.setSystemInfo("OS", "Mac OS");
 		extent.setSystemInfo("Tester Name", "QC_Jimbi");
 		extent.setSystemInfo("Browser", "Chrome");
+		
 
 	}
 
@@ -54,20 +59,14 @@ public class GetRequestAutomation {
 
 	}
 
-	@BeforeMethod
-	public void setup() {
-		System.setProperty("webdriver.chrome.driver", "resource/chromedriver");
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-	}
 
 	@Test
 	public void ApiTesting() throws IOException {
-		String network[] = { "fpt", "vnpt", "viettel" };
+		String network[] = { "fpt", "vnpt" };
 		for (String x : network) {
 			if(x.equals("fpt")) {
 				System.out.println(x);
-				wifi.switchToSpecificNetwork("INFINIY_503", "i28unit#503");
+				wifi.switchToSpecificNetwork("INFINIY_506", "i28unit#506");
 				try {
 					Thread.sleep(10000);
 				} catch (InterruptedException e) {
@@ -77,7 +76,7 @@ public class GetRequestAutomation {
 			}
 			else if(x.equals("vnpt")) {
 				System.out.println(x);
-				wifi.switchToSpecificNetwork("INFINIY28-603", "i28unit#603");
+				wifi.switchToSpecificNetwork("PPCloud", "wifikhongpass");
 				try {
 					Thread.sleep(10000);
 				} catch (InterruptedException e) {
@@ -94,28 +93,33 @@ public class GetRequestAutomation {
 			prop.load(fis);
 
 			for (int i = 1; i <= prop.size(); i++) {
+				System.setProperty("webdriver.chrome.driver", "resource/chromedriver");
+				driver = new ChromeDriver();
+				driver.manage().window().maximize();
 
 				String url = prop.getProperty("url" + i);
 				driver.get(url);
 
 				test = extent.createTest(url);
-				HttpClient client = HttpClientBuilder.create().build();
-				HttpResponse response = client.execute(new HttpGet(url));
-				int statusCode = response.getStatusLine().getStatusCode();
-				System.out.println(driver.getCurrentUrl() + "-----" + "status Code: " + statusCode);
-				if (statusCode == 200) {
+				if(driver.findElements(By.xpath(IDElement)).size() != 0) {
 					test.log(Status.PASS, url + "----- Access OK");
-					System.out.println("OK");
-					bot.sendMsg(driver.getCurrentUrl() + "    ------ Access Failed");
-
-				} else {
-					test.log(Status.FAIL, url + "------ Access failed");
-//					bot.sendMsg(driver.getCurrentUrl() + "    ------ Access Failed");
+					System.out.println(driver.getCurrentUrl() + "    ------ Access Success on " + x.toUpperCase());
 				}
+				else if (driver.findElements(By.xpath(ClassElement)).size() != 0) {
+					test.log(Status.PASS, url + "----- Access OK");
+					System.out.println(driver.getCurrentUrl() + "    ------ Access Success on " + x.toUpperCase());
+				}
+				else {
+					test.log(Status.FAIL, url + "------ Access failed on " + x.toUpperCase());
+					System.out.println("Access Failed");
+					bot.sendMsg(driver.getCurrentUrl() + "    ------ Access Failed on " + x.toUpperCase());
+				}
+				
+				driver.close();
 
 			}
 		}
-		driver.quit();
+//		driver.quit();
 
 	}
 
