@@ -93,7 +93,7 @@ public class GetRequestAutomation {
 			prop.load(fis);
 
 			for (int i = 1; i <= prop.size(); i++) {
-				System.setProperty("webdriver.chrome.driver", "resource/chromedriver");
+				System.setProperty("webdriver.chrome.driver", "resource/chromedriver.exe");
 				driver = new ChromeDriver();
 				driver.manage().window().maximize();
 

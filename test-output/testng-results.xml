@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Main Test Suite" duration-ms="133825" started-at="2020-07-31T09:50:46 ICT" finished-at="2020-07-31T09:53:00 ICT">
+  <suite name="Main Test Suite" duration-ms="82462" started-at="2020-07-31T16:37:42 ICT" finished-at="2020-07-31T16:39:04 ICT">
     <groups>
     </groups>
-    <test name="TestNG Test Group" duration-ms="133825" started-at="2020-07-31T09:50:46 ICT" finished-at="2020-07-31T09:53:00 ICT">
+    <test name="TestNG Test Group" duration-ms="82462" started-at="2020-07-31T16:37:42 ICT" finished-at="2020-07-31T16:39:04 ICT">
       <class name="testing.API.GetRequestAutomation">
-        <test-method status="PASS" signature="setExtent()[pri:0, instance:testing.API.GetRequestAutomation@624ea235]" name="setExtent" is-config="true" duration-ms="53" started-at="2020-07-31T09:50:46 ICT" finished-at="2020-07-31T09:50:46 ICT">
+        <test-method status="PASS" signature="setExtent()[pri:0, instance:testing.API.GetRequestAutomation@68c9d179]" name="setExtent" is-config="true" duration-ms="83" started-at="2020-07-31T16:37:42 ICT" finished-at="2020-07-31T16:37:42 ICT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setExtent -->
-        <test-method status="PASS" signature="ApiTesting()[pri:0, instance:testing.API.GetRequestAutomation@624ea235]" name="ApiTesting" duration-ms="133568" started-at="2020-07-31T09:50:46 ICT" finished-at="2020-07-31T09:53:00 ICT">
+        <test-method status="PASS" signature="ApiTesting()[pri:0, instance:testing.API.GetRequestAutomation@68c9d179]" name="ApiTesting" duration-ms="82052" started-at="2020-07-31T16:37:42 ICT" finished-at="2020-07-31T16:39:04 ICT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ApiTesting -->
-        <test-method status="PASS" signature="endReport()[pri:0, instance:testing.API.GetRequestAutomation@624ea235]" name="endReport" is-config="true" duration-ms="183" started-at="2020-07-31T09:53:00 ICT" finished-at="2020-07-31T09:53:00 ICT">
+        <test-method status="PASS" signature="endReport()[pri:0, instance:testing.API.GetRequestAutomation@68c9d179]" name="endReport" is-config="true" duration-ms="296" started-at="2020-07-31T16:39:04 ICT" finished-at="2020-07-31T16:39:04 ICT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport -->
