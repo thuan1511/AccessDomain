@@ -28,4 +28,22 @@ public class switchnetwork {
 
 	}
 
+	public void ClearCacheDNS() {
+
+		String osName = System.getProperty("os.name").toLowerCase();
+		String cmd;
+		if (osName.contains("mac")) {
+			cmd = "sudo killall -HUP mDNSResponder";
+			cmd = "12345679";
+		} else {
+			cmd = "ipconfig /flushdns";
+		}
+		try {
+			Runtime.getRuntime().exec(cmd);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 }
