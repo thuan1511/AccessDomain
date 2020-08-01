@@ -88,7 +88,7 @@ public class GetRequestAutomation {
 			
 			String osName = System.getProperty("os.name").toLowerCase();
 			if (osName.contains("mac")) {
-				System.setProperty("webdriver.chrome.driver", "resource/chromedriver");
+				System.setProperty("webdriver.chrome.driver", "resource/chromedrivers");
 			} else {
 				System.setProperty("webdriver.chrome.driver", "resource/chromedriver.exe");
 			}
